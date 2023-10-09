@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cleverage/process-bundle.git",
-                "reference": "1addbb68ae83c9c24ad2dbc35e9b05f0524e386e"
+                "reference": "32775f11d807aaeb7f02773ca6aa73946948d6ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cleverage/process-bundle/zipball/1addbb68ae83c9c24ad2dbc35e9b05f0524e386e",
-                "reference": "1addbb68ae83c9c24ad2dbc35e9b05f0524e386e",
+                "url": "https://api.github.com/repos/cleverage/process-bundle/zipball/32775f11d807aaeb7f02773ca6aa73946948d6ff",
+                "reference": "32775f11d807aaeb7f02773ca6aa73946948d6ff",
                 "shasum": ""
             },
             "require": {
@@ -122,7 +122,7 @@
                 "issues": "https://github.com/cleverage/process-bundle/issues",
                 "source": "https://github.com/cleverage/process-bundle/tree/v4-dev"
             },
-            "time": "2023-10-05T08:18:30+00:00"
+            "time": "2023-10-09T18:17:54+00:00"
         },
         {
             "name": "cleverage/process-ui-bundle",
