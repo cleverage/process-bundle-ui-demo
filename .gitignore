@@ -9,9 +9,7 @@
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
-/var/cache
-var/log
-var/storage
+/var/
 /vendor/
 ###< symfony/framework-bundle ###
 
@@ -23,5 +21,3 @@ var/storage
 ###> phpstan/phpstan ###
 phpstan.neon
 ###< phpstan/phpstan ###
-
-!var/data.db
