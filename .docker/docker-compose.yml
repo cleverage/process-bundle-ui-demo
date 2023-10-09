@@ -39,17 +39,17 @@ services:
 #      - database_data:/var/lib/postgresql/data:rw
 #    ports:
 #      - '5432:5432'
-  database:
-    image: mariadb:latest
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
-      MYSQL_DATABASE: ${MYSQL_DATABASE:-app}
-      MYSQL_USER: ${MYSQL_USER:-app}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-!ChangeMe!}
-    volumes:
-      - database_data:/var/lib/mysql:rw
-    ports:
-      - '3306:3306'
+#  database:
+#    image: mariadb:latest
+#    environment:
+#      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+#      MYSQL_DATABASE: ${MYSQL_DATABASE:-app}
+#      MYSQL_USER: ${MYSQL_USER:-app}
+#      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-!ChangeMe!}
+#    volumes:
+#      - database_data:/var/lib/mysql:rw
+#    ports:
+#      - '3306:3306'
 
 volumes:
   database_data:
