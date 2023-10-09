@@ -1,5 +1,6 @@
 **Process UI Bundle demo**
-*A sample application for process-bundle & process-bundle-UI*
+
+A sample application for process-bundle & process-bundle-UI*
 
 **Usage**
 
