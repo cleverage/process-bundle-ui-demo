@@ -18,6 +18,7 @@
         "symfony/web-profiler-bundle": "^6.3",
         "friendsofphp/php-cs-fixer": "^3.34",
         "phpstan/phpstan": "^1.10",
+        "roave/security-advisories": "dev-latest",
         "symfony/debug-bundle": "^6.3"
     },
     "scripts": {
@@ -25,5 +26,12 @@
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         }
+    },
+    "config": {
+        "allow-plugins": {
+            "symfony/flex": true,
+            "symfony/runtime": true
+        },
+        "sort-packages": true
     }
 }
