@@ -1,0 +1,39 @@
+clever_age_process:
+    configurations:
+        demo.sample:
+            options:
+                ui:
+                    source: Bar
+                    target: Foo
+                    upload_and_run: false
+                    run: true
+            tasks:
+                extract:
+                    service: '@CleverAge\ProcessBundle\Task\ConstantOutputTask'
+                    options:
+                        output:
+                            id: 123
+                            firstname: Test1
+                            lastname: Test2
+                    outputs: [ transform ]
+                
+                transform:
+                    service: '@CleverAge\ProcessBundle\Task\TransformerTask'
+                    options:
+                        transformers:
+                            mapping:
+                                mapping:
+                                    id:
+                                        code: '[id]'
+                                    slug:
+                                        code:
+                                            - '[id]'
+                                            - '[firstname]'
+                                            - '[lastname]'
+                                        transformers:
+                                            implode:
+                                                separator: '-'
+                    outputs: [ load ]
+                
+                load:
+                    service: '@CleverAge\ProcessBundle\Task\Debug\DebugTask'

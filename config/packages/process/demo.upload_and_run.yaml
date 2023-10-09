@@ -1,0 +1,29 @@
+clever_age_process:
+    configurations:
+        demo.upload_and_run:
+            entry_point: entrypoint
+            options:
+                ui:
+                    source: Foo
+                    target: Bar
+                    upload_and_run: true
+                    run: false
+            tasks:
+                entrypoint:
+                    service: '@CleverAge\ProcessBundle\Task\Reporting\LoggerTask'
+                    options:
+                        message: Read file
+                        level: info
+                        context: [ 'input' ]
+                    outputs: [ read ]
+                read:
+                    service: '@CleverAge\ProcessBundle\Task\File\Csv\InputCsvReaderTask'
+                    outputs: [ log_line, dump ]
+                log_line:
+                    service: '@CleverAge\ProcessBundle\Task\Reporting\LoggerTask'
+                    options:
+                        message: Read line
+                        level: info
+                        context: [ 'input' ]
+                dump:
+                    service: '@CleverAge\ProcessBundle\Task\Debug\DebugTask'

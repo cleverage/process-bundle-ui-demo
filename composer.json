@@ -1,0 +1,29 @@
+{
+    "name": "cleverage/process-bundle-ui-demo",
+    "type": "project",
+    "description": "A minimal project using cleverage/process-bundle & cleverage/process-bundle-ui",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {
+        "symfony/flex": "^v2.3",
+        "cleverage/process-bundle": "dev-v4-dev",
+        "cleverage/process-ui-bundle": "dev-v2-dev"
+    },
+    "require-dev": {
+        "symfony/maker-bundle": "^1.51",
+        "symfony/stopwatch": "^6.3",
+        "symfony/web-profiler-bundle": "^6.3",
+        "friendsofphp/php-cs-fixer": "^3.34",
+        "phpstan/phpstan": "^1.10",
+        "symfony/debug-bundle": "^6.3"
+    },
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        }
+    }
+}

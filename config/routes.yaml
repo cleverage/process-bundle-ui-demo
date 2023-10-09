@@ -1,0 +1,9 @@
+process-bundle-ui:
+    resource: '@CleverAgeProcessUiBundle/src/Controller'
+    type: attribute
+
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute

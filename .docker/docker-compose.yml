@@ -1,0 +1,55 @@
+version: "3.4"
+
+x-base-php: &base-php
+  build:
+    context: ./php
+    args:
+      UID: ${UID:-1000}
+      GID: ${GID:-1000}
+      PHP_VERSION: ${PHP_VERSION:-8.2}
+      XDEBUG_VERSION: ${XDEBUG_VERSION:-3.2.0}
+  env_file: .env
+  working_dir: ${VOLUME_ROOT:-/var/www/html}
+  volumes:
+    - ../:${VOLUME_ROOT:-/var/www/html}
+    - ./php/ini/symfony.ini:/usr/local/etc/php/conf.d/99-symfony.ini
+  extra_hosts:
+    - "host.docker.internal:host-gateway"
+  environment:
+    COMPOSER_HOME: ${VOLUME_ROOT:-/var/www/html}/.composer
+    COMPOSER_MEMORY_LIMIT: -1
+    HOME: ${VOLUME_ROOT:-/var/www/html}
+    XDEBUG_MODE: ${XDEBUG_MODE:-off}
+    PHP_IDE_CONFIG: serverName=sandbox_symfony
+    XDEBUG_CONFIG: ${XDEBUG_CONFIG:-}
+
+services:
+  php:
+    <<: *base-php
+    ports:
+      - "8000:8000"
+      
+#  database:
+#    image: postgres:${POSTGRES_VERSION:-15}-alpine
+#    environment:
+#      POSTGRES_DB: ${POSTGRES_DB:-app}
+#      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
+#      POSTGRES_USER: ${POSTGRES_USER:-app}
+#    volumes:
+#      - database_data:/var/lib/postgresql/data:rw
+#    ports:
+#      - '5432:5432'
+  database:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-app}
+      MYSQL_USER: ${MYSQL_USER:-app}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-!ChangeMe!}
+    volumes:
+      - database_data:/var/lib/mysql:rw
+    ports:
+      - '3306:3306'
+
+volumes:
+  database_data:
