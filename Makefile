@@ -11,6 +11,7 @@ src/vendor: #[Composer] install dependencies
 	$(DOCKER_RUN_PHP) "composer install --no-interaction"
 
 up: #[Docker] Start containers
+	touch .docker/.env
 	$(DOCKER_COMPOSE) up --remove-orphans --detach
 
 stop: #[Docker] Down containers

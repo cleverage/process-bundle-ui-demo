@@ -1,0 +1,20 @@
+clever_age_process:
+    configurations:
+        demo.die:
+            options:
+                ui:
+                    source: Bar
+                    target: Foo
+                    run: true
+            tasks:
+                entry:
+                    service: '@CleverAge\ProcessBundle\Task\ConstantOutputTask'
+                    options:
+                        output:
+                            id: 123
+                            firstname: Test1
+                            lastname: Test2
+                    outputs: [die]
+
+                die:
+                    service: '@CleverAge\ProcessBundle\Task\Debug\DieTask'
