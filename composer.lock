@@ -4,8 +4,90 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "51f9c249e5d9e82713441ffcd5e8cb58",
+    "content-hash": "f9555c1b2b72c7dc7c6caff2e083184a",
     "packages": [
+        {
+            "name": "cleverage/doctrine-process-bundle",
+            "version": "v2.0-RC1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cleverage/doctrine-process-bundle.git",
+                "reference": "15b44465fc084633cdff8d87635cd36e1bd4b3eb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cleverage/doctrine-process-bundle/zipball/15b44465fc084633cdff8d87635cd36e1bd4b3eb",
+                "reference": "15b44465fc084633cdff8d87635cd36e1bd4b3eb",
+                "shasum": ""
+            },
+            "require": {
+                "cleverage/process-bundle": "dev-v4-dev",
+                "doctrine/doctrine-bundle": "^2",
+                "doctrine/orm": "^2"
+            },
+            "require-dev": {
+                "phpstan/extension-installer": "*",
+                "phpstan/phpstan": "*",
+                "phpstan/phpstan-symfony": "*",
+                "phpunit/phpunit": "*",
+                "rector/rector": "*",
+                "roave/security-advisories": "dev-latest",
+                "symfony/test-pack": "^1.1",
+                "symplify/easy-coding-standard": "*",
+                "symplify/phpstan-rules": "*"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "CleverAge\\DoctrineProcessBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vincent Chalnot",
+                    "email": "vchalnot@clever-age.com",
+                    "homepage": "http://chalnot.fr",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Valentin Clavreul",
+                    "email": "vclavreul@clever-age.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Madeline Veyrenc",
+                    "email": "mveyrenc@clever-age.com",
+                    "homepage": "https://github.com/mveyrenc",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Xavier Marchegay",
+                    "email": "xmarchegay@clever-age.com",
+                    "homepage": "https://github.com/xaviermarchegay",
+                    "role": "Lead Developer"
+                }
+            ],
+            "description": "Dedicated bundle for Doctrine dependencies for the Process Bundle",
+            "homepage": "https://github.com/cleverage/doctrine-process-bundle",
+            "keywords": [
+                "doctrine",
+                "etl",
+                "export",
+                "import",
+                "process",
+                "task",
+                "transformation"
+            ],
+            "support": {
+                "issues": "https://github.com/cleverage/doctrine-process-bundle/issues",
+                "source": "https://github.com/cleverage/doctrine-process-bundle/tree/v2.0-RC1"
+            },
+            "time": "2023-10-09T20:09:10+00:00"
+        },
         {
             "name": "cleverage/process-bundle",
             "version": "dev-v4-dev",
@@ -7432,12 +7514,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "85afa852eeecec97cec35d987dcfbc602c025620"
+                "reference": "66dba7265a37e4081f443ed8211d507cd3cce5ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/85afa852eeecec97cec35d987dcfbc602c025620",
-                "reference": "85afa852eeecec97cec35d987dcfbc602c025620",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/66dba7265a37e4081f443ed8211d507cd3cce5ef",
+                "reference": "66dba7265a37e4081f443ed8211d507cd3cce5ef",
                 "shasum": ""
             },
             "conflict": {
@@ -7890,7 +7972,7 @@
                 "slim/slim": "<2.6",
                 "slub/slub-events": "<3.0.3",
                 "smarty/smarty": "<3.1.48|>=4,<4.3.1",
-                "snipe/snipe-it": "<=6.0.14",
+                "snipe/snipe-it": "<=6.2.1",
                 "socalnick/scn-social-auth": "<1.15.2",
                 "socialiteproviders/steam": "<1.1",
                 "spatie/browsershot": "<3.57.4",
@@ -8105,7 +8187,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-10-06T19:04:00+00:00"
+            "time": "2023-10-09T22:04:13+00:00"
         },
         {
             "name": "sebastian/diff",
@@ -8425,6 +8507,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "cleverage/doctrine-process-bundle": 5,
         "cleverage/process-bundle": 20,
         "cleverage/process-ui-bundle": 20,
         "roave/security-advisories": 20

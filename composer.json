@@ -8,9 +8,10 @@
         }
     },
     "require": {
-        "symfony/flex": "^v2.3",
+        "cleverage/doctrine-process-bundle": "v2.0-RC1",
         "cleverage/process-bundle": "dev-v4-dev",
-        "cleverage/process-ui-bundle": "dev-v2-dev"
+        "cleverage/process-ui-bundle": "dev-v2-dev",
+        "symfony/flex": "^v2.3"
     },
     "require-dev": {
         "symfony/maker-bundle": "^1.51",

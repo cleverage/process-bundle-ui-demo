@@ -1,0 +1,17 @@
+clever_age_process:
+    configurations:
+        demo.doctrine.read:
+            options:
+                ui:
+                    source: Bar
+                    target: Foo
+                    run: true
+            tasks:
+                entry:
+                    service: '@CleverAge\DoctrineProcessBundle\Task\Database\DatabaseReaderTask'
+                    options:
+                        table: 'process_user'
+                    outputs: [debug]
+
+                debug:
+                    service: '@CleverAge\ProcessBundle\Task\Debug\DebugTask'

@@ -1,4 +1,7 @@
 {
+    "cleverage/doctrine-process-bundle": {
+        "version": "dev-v2-dev"
+    },
     "cleverage/process-bundle": {
         "version": "dev-v4-dev"
     },
