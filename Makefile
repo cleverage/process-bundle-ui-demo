@@ -12,6 +12,7 @@ src/vendor: #[Composer] install dependencies
 
 up: #[Docker] Start containers
 	touch .docker/.env
+	make src/vendor
 	$(DOCKER_COMPOSE) up --remove-orphans --detach
 
 stop: #[Docker] Down containers
