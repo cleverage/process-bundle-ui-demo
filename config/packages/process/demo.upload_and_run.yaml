@@ -1,7 +1,7 @@
 clever_age_process:
     configurations:
         demo.upload_and_run:
-            entry_point: entrypoint
+            entry_point: entrypoint # for upload_and_run process entry_point is required
             options:
                 ui:
                     source: Foo
@@ -9,7 +9,7 @@ clever_age_process:
                     upload_and_run: true
                     run: false
             tasks:
-                entrypoint:
+                entrypoint: # Add log info to describe witch file is reading
                     service: '@CleverAge\ProcessBundle\Task\Reporting\LoggerTask'
                     options:
                         message: Read file
