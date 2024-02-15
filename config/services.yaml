@@ -10,7 +10,18 @@ services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
-
+    _instanceof:
+        CleverAge\ProcessBundle\Model\TaskInterface:
+            public: true
+            shared: false
+            tags:
+                - { name: monolog.logger, channel: cleverage_process_task }
+        CleverAge\ProcessBundle\Transformer\TransformerInterface:
+            public: true
+            shared: false
+            tags:
+                - { name: cleverage.transformer }
+                - { name: monolog.logger, channel: cleverage_process_transformer }
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
