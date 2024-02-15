@@ -45,10 +45,10 @@ assets/install: #[Symfony] Install assets
 cache/clean: #[Symfony] Clean cache
 	$(DOCKER_RUN_PHP) "bin/console c:c"
 
-server/start: #[Symfony CLI] Start Symfony http server
-	$(DOCKER_COMPOSE) exec -u $$(id -u $${USER}):$$(id -g $${USER}) php "bash" "-c" "symfony serve -d --no-tls"
+xdebug/on:
+	$(DOCKER_COMPOSE) stop php
+	XDEBUG_MODE=debug,develop $(DOCKER_COMPOSE) up --remove-orphans --detach
 
-server/stop: #[Symfony CLI] Stop Symfony http server
-	$(DOCKER_COMPOSE) exec -u $$(id -u $${USER}):$$(id -g $${USER}) php "bash" "-c" "symfony server:stop"
-
-server/restart: server/stop server/start #[Symfony CLI] Restart Symfony http server
+xdebug/off:
+	$(DOCKER_COMPOSE) stop php
+	XDEBUG_MODE=off $(DOCKER_COMPOSE) up --remove-orphans --detach
