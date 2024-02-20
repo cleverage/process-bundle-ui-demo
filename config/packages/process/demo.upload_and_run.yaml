@@ -9,7 +9,7 @@ clever_age_process:
                     upload_and_run: true
                     run: false
             tasks:
-                entrypoint: # Add log info to describe witch file is reading
+                entrypoint: # Add log info to describe which file is reading
                     service: '@CleverAge\ProcessBundle\Task\Reporting\LoggerTask'
                     options:
                         message: Read file
