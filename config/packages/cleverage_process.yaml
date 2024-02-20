@@ -8,3 +8,12 @@ clever_age_process_ui:
 
 clever_age_process:
     default_error_strategy: stop
+    generic_transformers:
+        uppercase:
+            transformers:
+                callback:
+                    callback: strtoupper
+        lowercase:
+            transformers:
+                callback:
+                    callback: strtolower
