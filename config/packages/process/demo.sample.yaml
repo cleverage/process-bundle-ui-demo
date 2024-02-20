@@ -13,8 +13,8 @@ clever_age_process:
                     options:
                         output:
                             id: 123
-                            firstname: Test1
-                            lastname: Test2
+                            firstname: My Firstname
+                            lastname: My Lastname
                     outputs: [ transform ]
                 
                 transform:
@@ -30,10 +30,23 @@ clever_age_process:
                                             - '[id]'
                                             - '[firstname]'
                                             - '[lastname]'
-                                        transformers:
+                                        transformers: # 1st concat, 2nd slugify the result of 1st
                                             implode:
                                                 separator: '-'
-                    outputs: [ load ]
-                
+                                            slugify: ~
+                                    firstname:
+                                        code: '[firstname]'
+                                        transformers:
+                                            uppercase: ~ # see config/packages/cleverage_process.yaml for generic transformers definitions
+                                    lastname:
+                                        code: '[lastname]'
+                                        transformers:
+                                            uppercase: ~ # see config/packages/cleverage_process.yaml for generic transformers definitions
+                    outputs: [ load, log ]
+                log:
+                    service: '@CleverAge\ProcessBundle\Task\Reporting\LoggerTask'
+                    options:
+                        message: Transformed
+                        level: info
                 load:
                     service: '@CleverAge\ProcessBundle\Task\Debug\DebugTask'
