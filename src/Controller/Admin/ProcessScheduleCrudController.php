@@ -91,7 +91,7 @@ class ProcessScheduleCrudController extends AbstractCrudController
                 ->formatValue(function ($value, ProcessSchedule $entity) {
                     return ProcessScheduleType::CRON === $entity->getType()
                         ? CronExpressionTrigger::fromSpec($entity->getExpression())->getNextRunDate(new \DateTimeImmutable())->format('c')
-                        : (new \DateTimeImmutable($entity->getExpression()))->format('c');
+                        : null;
                 }),
             FormField::addTab('Context'),
             ArrayField::new('context')
