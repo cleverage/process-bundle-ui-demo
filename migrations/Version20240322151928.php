@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+namespace DoctrineMigrations;
 
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
@@ -9,17 +10,17 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20240321135950 extends AbstractMigration
+final class Version20240322151928 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'Crate table for scheduler.';
+        return '';
     }
 
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE process_schedule (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, process VARCHAR(255) NOT NULL, cron_expression VARCHAR(255) NOT NULL, context CLOB NOT NULL --(DC2Type:json)
+        $this->addSql('CREATE TABLE process_schedule (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, process VARCHAR(255) NOT NULL, type VARCHAR(6) NOT NULL, expression VARCHAR(255) NOT NULL, context CLOB NOT NULL --(DC2Type:json)
         )');
     }
 

@@ -3,7 +3,16 @@
 namespace App\Entity;
 
 use App\Repository\ProcessScheduleRepository;
+use App\Validator\CronExpression;
+use App\Validator\EveryExpression;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+enum ProcessScheduleType: string
+{
+    case CRON = "cron";
+    case EVERY = "every";
+}
 
 #[ORM\Entity(repositoryClass: ProcessScheduleRepository::class)]
 class ProcessSchedule
@@ -16,8 +25,16 @@ class ProcessSchedule
     #[ORM\Column(length: 255)]
     private ?string $process = null;
 
+    #[ORM\Column(length: 6)]
+    private ProcessScheduleType $type;
     #[ORM\Column(length: 255)]
-    private ?string $cronExpression = null;
+    #[Assert\When(
+        expression: 'this.getType().value == "cron"', constraints: [new CronExpression()]
+    )]
+    #[Assert\When(
+        expression: 'this.getType().value == "every"', constraints: [new EveryExpression()]
+    )]
+    private ?string $expression = null;
 
     #[ORM\Column(type: 'json')]
     private string|array $context = [];
@@ -39,18 +56,6 @@ class ProcessSchedule
         return $this;
     }
 
-    public function getCronExpression(): ?string
-    {
-        return $this->cronExpression;
-    }
-
-    public function setCronExpression(string $cronExpression): static
-    {
-        $this->cronExpression = $cronExpression;
-
-        return $this;
-    }
-
     public function getContext(): array
     {
         return is_array($this->context) ? $this->context : json_decode($this->context);
@@ -65,4 +70,29 @@ class ProcessSchedule
     {
         return null;
     }
+
+    public function getType(): ProcessScheduleType
+    {
+        return $this->type;
+    }
+
+    public function setType(ProcessScheduleType $type): ProcessSchedule
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getExpression(): ?string
+    {
+        return $this->expression;
+    }
+
+    public function setExpression(?string $expression): ProcessSchedule
+    {
+        $this->expression = $expression;
+
+        return $this;
+    }
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Scheduler;
 
+use App\Entity\ProcessScheduleType;
 use App\Message\CronProcessMessage;
 use App\Repository\ProcessScheduleRepository;
 use Symfony\Component\Scheduler\Attribute\AsSchedule;
@@ -20,12 +21,21 @@ readonly class CronScheduler implements ScheduleProviderInterface
     {
         $schedule = new Schedule();
         foreach ($this->repository->findAll() as $processSchedule) {
-            $schedule->add(
-                RecurringMessage::cron(
-                    $processSchedule->getCronExpression(),
-                    new CronProcessMessage($processSchedule)
-                )
-            );
+            if (ProcessScheduleType::CRON === $processSchedule->getType()) {
+                $schedule->add(
+                    RecurringMessage::cron(
+                        $processSchedule->getExpression(),
+                        new CronProcessMessage($processSchedule)
+                    )
+                );
+            } elseif (ProcessScheduleType::EVERY === $processSchedule->getType()) {
+                $schedule->add(
+                    RecurringMessage::every(
+                        $processSchedule->getExpression(),
+                        new CronProcessMessage($processSchedule)
+                    )
+                );
+            }
         }
 
         return $schedule;

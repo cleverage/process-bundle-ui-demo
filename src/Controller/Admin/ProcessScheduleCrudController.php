@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Entity\ProcessSchedule;
+use App\Entity\ProcessScheduleType;
 use App\Form\ProcessContextType;
 use App\Validator\CronExpression;
 use CleverAge\ProcessBundle\Configuration\ProcessConfiguration;
 use CleverAge\ProcessBundle\Registry\ProcessConfigurationRegistry;
+use CleverAge\ProcessUiBundle\Admin\Field\EnumField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -20,9 +22,12 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Process\Process;
+use Symfony\Component\Scheduler\Schedule;
+use Symfony\Component\Scheduler\Scheduler;
 use Symfony\Component\Scheduler\Trigger\CronExpressionTrigger;
 
 class ProcessScheduleCrudController extends AbstractCrudController
@@ -74,15 +79,19 @@ class ProcessScheduleCrudController extends AbstractCrudController
             TextField::new('process')
                 ->setFormType(ChoiceType::class)
                 ->setFormTypeOption('choices', array_combine(array_keys($choices), array_keys($choices))),
-            TextField::new('cronExpression')
-                ->setFormTypeOption('constraints', [new CronExpression()]),
+            EnumField::new('type')
+                ->setFormType(EnumType::class)
+                ->setFormTypeOption('class', ProcessScheduleType::class),
+            TextField::new('expression'),
             DateTimeField::new('nextExecution')
                 ->setFormTypeOption('mapped', false)
                 ->setVirtual(true)
                 ->hideOnForm()
                 ->hideOnDetail()
                 ->formatValue(function ($value, ProcessSchedule $entity) {
-                    return CronExpressionTrigger::fromSpec($entity->getCronExpression())->getNextRunDate(new \DateTimeImmutable())->format('c');
+                    return ProcessScheduleType::CRON === $entity->getType()
+                        ? CronExpressionTrigger::fromSpec($entity->getExpression())->getNextRunDate(new \DateTimeImmutable())->format('c')
+                        : (new \DateTimeImmutable($entity->getExpression()))->format('c');
                 }),
             FormField::addTab('Context'),
             ArrayField::new('context')
