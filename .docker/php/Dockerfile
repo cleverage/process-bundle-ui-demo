@@ -23,6 +23,8 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     gosu \
     symfony-cli \
+    supervisor \
+    procps \
     && docker-php-ext-configure intl \
     && install-php-extensions \
         intl \
@@ -44,4 +46,4 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
-CMD symfony server:stop;symfony server:ca:install;symfony serve --port=${DOCKER_HTTP_PORT}
+CMD service supervisor start;symfony server:stop --all;symfony server:ca:install;symfony serve --port=${DOCKER_HTTP_PORT};
