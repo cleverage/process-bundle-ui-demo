@@ -15,7 +15,7 @@ use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\HttpKernel\KernelInterface;
 
-final readonly class AfterEntityUpdateEventListener
+final readonly class AfterEntityActionEventListener
 {
     public function __construct(private KernelInterface $kernel)
     {
