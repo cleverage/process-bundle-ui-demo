@@ -211,12 +211,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cleverage/processuibundle.git",
-                "reference": "6c005f532733f181de55da8c9479c081a038ba63"
+                "reference": "cf86b78e7053e739be6cebd201eaad525ec62717"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cleverage/processuibundle/zipball/6c005f532733f181de55da8c9479c081a038ba63",
-                "reference": "6c005f532733f181de55da8c9479c081a038ba63",
+                "url": "https://api.github.com/repos/cleverage/processuibundle/zipball/cf86b78e7053e739be6cebd201eaad525ec62717",
+                "reference": "cf86b78e7053e739be6cebd201eaad525ec62717",
                 "shasum": ""
             },
             "require": {
@@ -265,7 +265,7 @@
                 "issues": "https://github.com/cleverage/processuibundle/issues",
                 "source": "https://github.com/cleverage/processuibundle/tree/v2-dev"
             },
-            "time": "2023-12-13T15:20:37+00:00"
+            "time": "2024-08-26T07:47:22+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -8569,5 +8569,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.6.0"
 }
