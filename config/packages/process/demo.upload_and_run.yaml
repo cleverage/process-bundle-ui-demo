@@ -6,8 +6,24 @@ clever_age_process:
                 ui:
                     source: Foo
                     target: Bar
-                    upload_and_run: true
-                    run: false
+                    entrypoint_type: file
+                    default: ## set default values to UI launch form
+                        #input: /var/wwww ###ignored because entrypoint_type is set to file
+                        context:
+                            - key: delimiter  # allow to change delimiter via UI form
+                              value: ,
+                    constraints: ## constraint to apply on the form
+                        - Collection:
+                              fields:
+                                  input:
+                                      - File: ~
+                                  context:
+                                      - Collection:
+                                            fields:
+                                                delimiter:
+                                                    - Choice:
+                                                          choices: [',', ';']
+                                                          message: delimiter context must be , or ;. {{ value }} given.
             tasks:
                 entrypoint: # Add log info to describe witch file is reading
                     service: '@CleverAge\ProcessBundle\Task\Reporting\LoggerTask'
@@ -19,6 +35,8 @@ clever_age_process:
                 read:
                     service: '@CleverAge\ProcessBundle\Task\File\Csv\InputCsvReaderTask'
                     outputs: [ log_line, dump ]
+                    options:
+                        delimiter: '{{ delimiter }}' ## delimiter is contextualized you must add -c delimiter:; on console execute
                 log_line:
                     service: '@CleverAge\ProcessBundle\Task\Reporting\LoggerTask'
                     options:
