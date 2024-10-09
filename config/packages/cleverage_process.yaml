@@ -3,7 +3,6 @@ imports:
 
 clever_age_process_ui:
     logs:
-        database_level: Info # all logs higher are equal than Info were stored in database
         report_increment_level: Info # all logs higher are equal than Info were added to ProcessExecution report
 
 clever_age_process:
