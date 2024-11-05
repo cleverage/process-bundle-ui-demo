@@ -1,5 +1,7 @@
 **Process UI Bundle demo**
 
+This bundle is deprecated, use CleverAge/ProcessBundleDemo(https://github.com/cleverage/process-bundle-demo) instead
+
 A sample application for process-bundle & process-bundle-UI*
 
 **Usage**
